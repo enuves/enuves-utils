@@ -1,5 +1,5 @@
 import test from "ava";
-import { capitalize, prettyBytes, sortArray, uniqueArray } from "./index.js";
+import { capitalize, isJsonString, prettyBytes, sortArray, uniqueArray } from "./index.js";
 
 test("capitalize first letter from a string", t => {
   t.is(capitalize("this is a string"), "This is a string");
@@ -27,4 +27,11 @@ test("Return array without duplicates", t=> {
 //sortArray
 test("Sort a object array by property", t => {
   t.deepEqual(sortArray([{x: '1', y: '2'}, {x:'-5', y:'15'}], 'x'), [{ x: '-5', y: '15' }, { x: '1', y: '2' }]);
+});
+
+// isJsonString
+test("Validate strings in JSON", t => {
+  let json = JSON.stringify({x: 2, y: 25});
+  t.is(isJsonString(json), true);
+  t.is(isJsonString('hello'), false);
 });
