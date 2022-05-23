@@ -1,5 +1,5 @@
 import test from "ava";
-import { capitalize, prettyBytes, uniqueArray } from "./index.js";
+import { capitalize, prettyBytes, sortArray, uniqueArray } from "./index.js";
 
 test("capitalize first letter from a string", t => {
   t.is(capitalize("this is a string"), "This is a string");
@@ -22,4 +22,9 @@ test("Return array without duplicates", t=> {
   t.deepEqual(uniqueArray([...['a', 'b', 'c'], ...['c', 'g', 'a']]), ['a','b','c','g']);
   t.deepEqual(uniqueArray([{a:1,b:2}, 3,4, {a:1, b:2}]), [{a:1,b:2}, 3, 4]);
   t.deepEqual(uniqueArray(['a', 'b', 'c', 'b', 'd']), ['a','b','c','d']);
+});
+
+//sortArray
+test("Sort a object array by property", t => {
+  t.deepEqual(sortArray([{x: '1', y: '2'}, {x:'-5', y:'15'}], 'x'), [{ x: '-5', y: '15' }, { x: '1', y: '2' }]);
 });
